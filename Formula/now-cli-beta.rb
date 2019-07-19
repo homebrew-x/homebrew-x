@@ -1,6 +1,6 @@
 require "language/node"
 
-class NowCli < Formula
+class NowCliBeta < Formula
   desc "The command-line interface for Now"
   homepage "https://zeit.co/now"
   url "https://github.com/zeit/now-cli/archive/15.9.0-canary.13.tar.gz"
