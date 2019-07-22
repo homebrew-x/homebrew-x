@@ -1,41 +1,46 @@
 require "language/node"
+require "json"
 
 class NowCliBeta < Formula
   desc "The command-line interface for Now"
   homepage "https://zeit.co/now"
-  url "https://github.com/zeit/now-cli/archive/15.9.0-canary.13.tar.gz"
-  sha256 "7511281b69aac029111306ce9402017c4918f42e22940bc2b21c40b77c8fb463"
+  url "https://github.com/zeit/now-cli/archive/15.9.0-canary.15.tar.gz"
+  sha256 "0ec9b2b4377563c6acbd6b3463a8ce1310574ecac5056505517f2df6fb3dc720"
 
-  depends_on "node" => :build
+  depends_on "node"
 
   def install
-    # don't run postinstall
-    inreplace("package.json") { |s| s.gsub! /^.*"postinstall".*$/, "" }
+    pkg_json = JSON.parse(IO.read("package.json"))
+    pkg_json["scripts"].delete("postinstall") # don't run postinstall
+    IO.write("package.json", JSON.pretty_generate(pkg_json))
 
     system "npm", "install", *Language::Node.local_npm_install_args
     system "npm", "run", "build"
 
-    # Read the target node version from package.json
-    target = IO.read("package.json").match(/\"(node\d+(\.\d+){2})-[^"]+\"/)[1]
+    # create release package.json (set main entry point, install only the release bundle)
+    pkg_json["bin"]["now"] = "index.js"
+    pkg_json.delete("dependencies")
+    pkg_json.delete("files")
+    IO.write("dist/package.json", JSON.pretty_generate(pkg_json))
 
-    # This packages now-cli together with a patched version of node
-    pkg_args = %W[
-      --c=package.json
-      --o=now
-      --options=no-warnings
-      --targets=#{target}
-    ]
-    system "node_modules/.bin/pkg", "bin/now.js", *pkg_args
+    # add shebang + pretend to be packaged via pkg + change update notification
+    inreplace "dist/index.js" do |s|
+      s.gsub! "require('./sourcemap-register.js');", "#!/usr/bin/env node\n\nrequire('./sourcemap-register.js');"
+      s.gsub! "process.pkg", "true"
+      s.gsub! /(\w+).getUpgradeCommand=getUpgradeCommand;/,
+              "\\1.getUpgradeCommand=async()=>'Please run `brew upgrade now-cli` to update Now CLI.';"
+    end
 
-    bin.install "now"
+    cd "dist" do
+      system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+      bin.install_symlink Dir["#{libexec}/bin/*"]
+    end
   end
 
   test do
-    system "#{bin}/now", "init", "bash"
-    assert_predicate testpath/"bash/index.sh", :exist?, "index.sh must exist"
-    assert_predicate testpath/"bash/now.json", :exist?, "now.json must exist"
-    assert_predicate testpath/"bash/README.md", :exist?, "README.md must exist"
-    system "echo", "handler >> bash/index.sh"
-    system "bash", "bash/index.sh"
+    system "#{bin}/now", "init", "markdown"
+    assert_predicate testpath/"markdown/_config.yml", :exist?, "_config.yml must exist"
+    assert_predicate testpath/"markdown/package.json", :exist?, "package.json must exist"
+    assert_predicate testpath/"markdown/README.md", :exist?, "README.md must exist"
   end
 end
