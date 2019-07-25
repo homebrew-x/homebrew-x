@@ -29,7 +29,8 @@ class NowCliBeta < Formula
               "#!/usr/bin/env node\nrequire('./sourcemap-register.js');"
       s.gsub! "process.pkg", "true"
       s.gsub! /(\w+).(\w+)=get(Update|Upgrade)Command(;?)/,
-              "\\1.\\2=async()=>'Please run `brew upgrade now-cli` to update Now CLI.'\\4"
+              "\\1.\\2=async()=>'Please run `brew upgrade now-cli-beta` to update Now CLI.'\\4"
+      s.gsub! "\"now update\"", "\"brew upgrade now-cli-beta\""
     end
 
     cd "dist" do
