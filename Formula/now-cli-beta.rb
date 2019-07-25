@@ -1,46 +1,26 @@
 require "language/node"
-require "json"
 
 class NowCliBeta < Formula
   desc "The command-line interface for Now"
   homepage "https://zeit.co/now"
-  url "https://github.com/zeit/now-cli/archive/15.9.0-canary.21.tar.gz"
-  sha256 "ea40a6796b99df244ec88067965b1806424adc7b165226593d45d4ebb03293c4"
+  url "https://registry.npmjs.org/now/-/now-15.9.0-canary.21.tgz"
+  sha256 "2173eaadc11c84fddae196f3e2cdcbbf4789d4a333dbac5e2ece88d26cef1a13"
 
   depends_on "node"
 
   def install
-    pkg_json = JSON.parse(IO.read("package.json"))
-    pkg_json["scripts"].delete("postinstall") # don't run postinstall
-    IO.write("package.json", JSON.pretty_generate(pkg_json))
-
-    system "npm", "install", *Language::Node.local_npm_install_args
-    system "npm", "run", "build"
-
-    # create release package.json (set main entry point, install only the release bundle)
-    pkg_json["bin"]["now"] = "index.js"
-    pkg_json.delete("dependencies")
-    pkg_json.delete("files")
-    IO.write("dist/package.json", JSON.pretty_generate(pkg_json))
-
-    # add shebang + pretend to be packaged via pkg + change update notification
+    rm Dir["dist/{*.exe,xsel}"]
     inreplace "dist/index.js" do |s|
-      s.gsub! %r{(#!/usr/bin/env node\n+)?require\('\./sourcemap-register\.js'\);},
-              "#!/usr/bin/env node\nrequire('./sourcemap-register.js');"
-      s.gsub! "process.pkg", "true"
-      s.gsub! /(\w+).(\w+)=get(Update|Upgrade)Command(;?)/,
-              "\\1.\\2=async()=>'Please run `brew upgrade now-cli-beta` to update Now CLI.'\\4"
-      s.gsub! "\"now update\"", "\"brew upgrade now-cli-beta\""
+      s.gsub! /(\w+).(\w+)=getUpdateCommand/, "\\1.\\2=async()=>'Please run `brew upgrade now-cli` to update Now CLI.'"
+      s.gsub! '"now update"', '"brew upgrade now-cli"'
     end
-
-    cd "dist" do
-      system "npm", "install", *Language::Node.std_npm_install_args(libexec)
-      bin.install_symlink Dir["#{libexec}/bin/*"]
-    end
+    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    bin.install_symlink Dir["#{libexec}/bin/*"]
   end
 
   test do
     system "#{bin}/now", "init", "markdown"
+    assert_predicate testpath/"markdown/now.json", :exist?, "now.json must exist"
     assert_predicate testpath/"markdown/README.md", :exist?, "README.md must exist"
   end
 end
