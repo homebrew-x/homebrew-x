@@ -25,10 +25,11 @@ class NowCliBeta < Formula
 
     # add shebang + pretend to be packaged via pkg + change update notification
     inreplace "dist/index.js" do |s|
-      s.gsub! "require('./sourcemap-register.js');", "#!/usr/bin/env node\n\nrequire('./sourcemap-register.js');"
+      s.gsub! %r{(#!/usr/bin/env node\n+)?require\('\./sourcemap-register\.js'\);},
+              "#!/usr/bin/env node\nrequire('./sourcemap-register.js');"
       s.gsub! "process.pkg", "true"
-      s.gsub! /(\w+).getUpgradeCommand=getUpgradeCommand;/,
-              "\\1.getUpgradeCommand=async()=>'Please run `brew upgrade now-cli` to update Now CLI.';"
+      s.gsub! /(\w+).(\w+)=get(Update|Upgrade)Command(;?)/,
+              "\\1.\\2=async()=>'Please run `brew upgrade now-cli` to update Now CLI.'\\4"
     end
 
     cd "dist" do
@@ -39,8 +40,6 @@ class NowCliBeta < Formula
 
   test do
     system "#{bin}/now", "init", "markdown"
-    assert_predicate testpath/"markdown/_config.yml", :exist?, "_config.yml must exist"
-    assert_predicate testpath/"markdown/package.json", :exist?, "package.json must exist"
     assert_predicate testpath/"markdown/README.md", :exist?, "README.md must exist"
   end
 end
