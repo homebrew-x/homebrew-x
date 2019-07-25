@@ -1,2 +1,3 @@
 # Homebrew-X
-Manage Homebrew Formulas and Casks
+
+Manage Homebrew Formulae and Casks
