@@ -4,8 +4,8 @@ require "json"
 class NowCliBeta < Formula
   desc "The command-line interface for Now"
   homepage "https://zeit.co/now"
-  url "https://github.com/zeit/now-cli/archive/15.9.0-canary.15.tar.gz"
-  sha256 "0ec9b2b4377563c6acbd6b3463a8ce1310574ecac5056505517f2df6fb3dc720"
+  url "https://github.com/zeit/now-cli/archive/15.9.0-canary.21.tar.gz"
+  sha256 "ea40a6796b99df244ec88067965b1806424adc7b165226593d45d4ebb03293c4"
 
   depends_on "node"
 
