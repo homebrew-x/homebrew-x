@@ -4,8 +4,8 @@ require "json"
 class NowCli < Formula
   desc "The command-line interface for Now"
   homepage "https://zeit.co/now"
-  url "https://github.com/zeit/now-cli/archive/15.8.5.tar.gz"
-  sha256 "74ac225083767df56153127d2c479b1f983cafc0b17d757a07f3e2012b64c0fb"
+  url "https://github.com/zeit/now-cli/archive/15.8.7.tar.gz"
+  sha256 "718388d573f3257efd6a6ed47e24b3e662ad4359910baa09196eff7cf73667cd"
 
   depends_on "node"
 
@@ -39,8 +39,8 @@ class NowCli < Formula
 
   test do
     system "#{bin}/now", "init", "markdown"
-    assert_predicate testpath/"markdown/_config.yml", :exist?, "_config.yml must exist"
-    assert_predicate testpath/"markdown/package.json", :exist?, "package.json must exist"
+    assert_predicate testpath/"markdown/index.md", :exist?, "index.md must exist"
+    assert_predicate testpath/"markdown/now.json", :exist?, "now.json must exist"
     assert_predicate testpath/"markdown/README.md", :exist?, "README.md must exist"
   end
 end
