@@ -3,8 +3,8 @@ require "language/node"
 class NowCliBeta < Formula
   desc "The command-line interface for Now"
   homepage "https://zeit.co/now"
-  url "https://registry.npmjs.org/now/-/now-15.9.0-canary.21.tgz"
-  sha256 "2173eaadc11c84fddae196f3e2cdcbbf4789d4a333dbac5e2ece88d26cef1a13"
+  url "https://registry.npmjs.org/now/-/now-16.1.2-canary.1.tgz"
+  sha256 "7f64a6b9e40603bb322f8abae41fa9bf6e3db6d205f64e4398bb8e3cad8ca4da"
 
   depends_on "node"
 
