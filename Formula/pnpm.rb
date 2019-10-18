@@ -1,5 +1,3 @@
-require "language/node"
-
 class Pnpm < Formula
   desc "📦🚀 Fast, disk space efficient package manager "
   homepage "https://pnpm.js.org"
@@ -9,6 +7,7 @@ class Pnpm < Formula
   depends_on "node"
 
   def install
+    require "language/node"
     system "npm", "install", *Language::Node.std_npm_install_args(libexec)
     bin.install_symlink Dir["#{libexec}/bin/*"]
   end
