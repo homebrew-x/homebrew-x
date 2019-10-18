@@ -9,11 +9,12 @@ class Pnpm < Formula
   depends_on "node"
 
   def install
+    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
     bin.install_symlink Dir["#{libexec}/bin/*"]
   end
 
   test do
-    system "#{bin}/pnm", "init", "-y"
+    system "#{bin}/pnpm", "init", "-y"
     assert_predicate testpath/"package.json", :exist?, "package.json must exist"
   end
 end
