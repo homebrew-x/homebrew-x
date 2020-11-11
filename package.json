@@ -1,0 +1,12 @@
+{
+  "name": "homebrew-x",
+  "version": "1.0.0",
+  "repository": "git@github.com:JounQin/Homebrew-X.git",
+  "author": "JounQin <admin@1stg.me>",
+  "license": "MIT",
+  "private": true,
+  "prettier": "@1stg/prettier-config",
+  "devDependencies": {
+    "@1stg/prettier-config": "^0.10.5"
+  }
+}
