@@ -5,18 +5,27 @@
   "author": "JounQin <admin@1stg.me>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "postinstall": "yarn-deduplicate || exit 0"
+  },
   "devDependencies": {
-    "@1stg/commitlint-config": "^0.5.6",
-    "@1stg/husky-config": "^0.7.3",
-    "@1stg/lint-staged": "^0.14.4",
-    "@1stg/prettier-config": "^0.10.5",
+    "@1stg/commitlint-config": "^0.6.0",
+    "@1stg/husky-config": "^0.8.0",
+    "@1stg/lint-staged": "^0.15.0",
+    "@1stg/prettier-config": "^0.11.0",
     "commitlint": "^11.0.0",
     "husky": "^4.3.0",
-    "lint-staged": "^10.5.1",
-    "prettier": "^2.1.2"
+    "lint-staged": "^10.5.2",
+    "prettier": "^2.2.1",
+    "yarn-deduplicate": "^3.1.0"
   },
   "commitlint": {
     "extends": "@1stg"
   },
-  "prettier": "@1stg/prettier-config"
+  "prettier": "@1stg/prettier-config",
+  "renovate": {
+    "extends": [
+      "@1stg"
+    ]
+  }
 }
