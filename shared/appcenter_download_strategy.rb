@@ -22,7 +22,7 @@ class AppCenterDownloadStrategy < CurlDownloadStrategy
   private def _fetch(url:, resolved_url:)
     _, owner, app =
       Regexp.new(
-        "^https://install.appcenter.ms/users/([\\w-]*)/apps/([\\w-]*)/distribution_groups/public\\?version="
+        "^https://install.appcenter.ms/users/([\\w-]*)/apps/([\\w-]*)/distribution_groups/public$"
       ).match(url).to_a
 
     releases_url =
