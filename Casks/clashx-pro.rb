@@ -1,8 +1,8 @@
 require_relative '../shared/appcenter_download_strategy.rb'
 
 cask 'clashx-pro' do
-  version '1.31.0.1'
-  sha256 'a606c0558c3f391af832ef8f1ef1c667bf0b90cad69107e9c645abb08360362f'
+  version '1.31.1.1'
+  sha256 'd5983b94c1ea0fd1a07aae8e3ba6f8af7c22ea4afa69d519748cb825356666b9'
 
   url 'https://install.appcenter.ms/users/clashx/apps/clashx-pro/distribution_groups/public',
       using: AppCenterDownloadStrategy
