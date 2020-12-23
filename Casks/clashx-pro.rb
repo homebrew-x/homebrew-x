@@ -1,10 +1,12 @@
 require_relative '../shared/appcenter_download_strategy.rb'
 
 cask 'clashx-pro' do
-  version '1.31.1.1'
-  sha256 'd5983b94c1ea0fd1a07aae8e3ba6f8af7c22ea4afa69d519748cb825356666b9'
+  version '1.31.2.1'
+  sha256 'f0ce1ae36ab256ec58b136c74687eee2d689fdc662fdd1ba6973d49817f3c810'
 
-  url 'https://install.appcenter.ms/users/clashx/apps/clashx-pro/distribution_groups/public',
+  url "https://install.appcenter.ms/users/clashx/apps/clashx-pro/distribution_groups/public?version=#{
+        version
+      }",
       using: AppCenterDownloadStrategy
   name 'ClashX Pro'
   desc 'A rule based proxy For Mac base on Clash.'
