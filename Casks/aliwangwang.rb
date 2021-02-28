@@ -20,6 +20,6 @@ cask 'aliwangwang' do
         '~/Library/Containers/com.taobao.aliwangwang',
         '~/Library/Internet Plug-Ins/WangwangPlugin.plugin',
         '~/Library/Preferences/com.taobao.aliwangwang.plist',
-        '~/Library/Saved Application State/com.taobao.aliwangwang.savedState'
+        '~/Library/Saved Application State/com.taobao.aliwangwang.savedState',
       ]
 end
