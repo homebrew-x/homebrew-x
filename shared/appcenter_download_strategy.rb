@@ -1,7 +1,7 @@
-require 'download_strategy'
-require 'json'
-require 'net/http'
-require 'uri'
+require "download_strategy"
+require "json"
+require "net/http"
+require "uri"
 
 class AppCenterDownloadStrategy < CurlDownloadStrategy
   private def _fetchJson(url)
@@ -13,7 +13,7 @@ class AppCenterDownloadStrategy < CurlDownloadStrategy
       Net::HTTP.start(
         uri.host,
         uri.port,
-        use_ssl: uri.scheme == 'https'
+        use_ssl: uri.scheme == "https"
       ) { |http| http.request(req) }
 
     return JSON.parse(res.body)
@@ -21,9 +21,12 @@ class AppCenterDownloadStrategy < CurlDownloadStrategy
 
   private def _fetch(url:, resolved_url:)
     _, owner, app =
-      Regexp.new(
-        "^https://install.appcenter.ms/users/([\\w-]*)/apps/([\\w-]*)/distribution_groups/public\\?version="
-      ).match(url).to_a
+      Regexp
+        .new(
+          "^https://install.appcenter.ms/users/([\\w-]*)/apps/([\\w-]*)/distribution_groups/public\\?version="
+        )
+        .match(url)
+        .to_a
 
     releases_url =
       "https://install.appcenter.ms/api/v0.1/apps/#{owner}/#{
@@ -32,7 +35,7 @@ class AppCenterDownloadStrategy < CurlDownloadStrategy
 
     ohai "Fetching #{releases_url}"
 
-    matched = _fetchJson(releases_url).find { |i| i['version'] == version }
+    matched = _fetchJson(releases_url).find { |i| i["version"] == version }
 
     if matched == nil
       $stderr.puts "No matched version #{version} found for #{owner}/#{app}"
@@ -42,11 +45,11 @@ class AppCenterDownloadStrategy < CurlDownloadStrategy
     release_url =
       "https://install.appcenter.ms/api/v0.1/apps/#{owner}/#{
         app
-      }/distribution_groups/public/releases/#{matched['id']}"
+      }/distribution_groups/public/releases/#{matched["id"]}"
 
     ohai "Fetching #{release_url}"
 
-    resolved_url = _fetchJson(release_url)['download_url']
+    resolved_url = _fetchJson(release_url)["download_url"]
 
     ohai "Downloading from #{resolved_url}"
 
