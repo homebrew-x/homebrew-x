@@ -1,25 +1,27 @@
 cask "aliwangwang" do
-  version "8.01.03M"
-  sha256 "c7ed5cc9ace67b6ba65ee84dae24cb467e36118359b7538762036071ead0ba05"
+  version "10.01.02M"
+  sha256 "5a13d4890944a2a64b862cda41f9786e344b5e520e218dc37e9090ae282b0d8a"
 
-  # gw.alipayobjects.com was verified as official when first introduced to the cask
-  url "https://gw.alipayobjects.com/os/bmw-prod/9b3facdd-e15f-4013-a883-b48ef641d700.dmg"
-  appcast "https://jdy.tmall.com/version/check?version=8.00.44M&nick=cask&platform=macww"
+  url "https://download.alicdn.com/wangwang/AliWangWang_(#{version}).dmg"
+  appcast "https://jdy.tmall.com/version/check?version=#{version}&nick=cask&platform=macww"
   name "Ali Wangwang"
   name "阿里旺旺"
-  homepage "https://alimarket.taobao.com/markets/qnww/portal-group/ww/index"
+  homepage "https://pages.tmall.com/wow/qnww/act/index"
 
   auto_updates true
 
   app "AliWangwang.app"
 
-  uninstall quit: "com.taobao.aliwangwang"
+  uninstall quit: "com.taobao.Aliwangwang"
 
   zap trash: [
-        "~/Library/Caches/com.taobao.aliwangwang",
-        "~/Library/Containers/com.taobao.aliwangwang",
-        "~/Library/Internet Plug-Ins/WangwangPlugin.plugin",
-        "~/Library/Preferences/com.taobao.aliwangwang.plist",
-        "~/Library/Saved Application State/com.taobao.aliwangwang.savedState"
+        "~/Library/Application Support/AliWangwang",
+        "~/Library/Caches/com.taobao.Aliwangwang",
+        "~/Library/Containers/com.taobao.Aliwangwang",
+        "~/Library/HTTPStorages/com.taobao.Aliwangwang",
+        "~/Library/HTTPStorages/com.taobao.Aliwangwang.binarycookies",
+        "~/Library/Preferences/com.taobao.Aliwangwang.plist",
+        "~/Library/Saved Application State/com.taobao.Aliwangwang.savedState",
+        "~/Library/WebKit/com.taobao.Aliwangwang"
       ]
 end
