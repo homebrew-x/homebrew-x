@@ -9,7 +9,7 @@
     "prepare": "simple-git-hooks && yarn-deduplicate || exit 0"
   },
   "devDependencies": {
-    "@1stg/common-config": "^6.1.4"
+    "@1stg/common-config": "^6.2.0"
   },
   "resolutions": {
     "prettier": "^2.7.1"
