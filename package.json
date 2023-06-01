@@ -12,7 +12,7 @@
     "@1stg/common-config": "^7.1.1"
   },
   "resolutions": {
-    "prettier": "^2.7.1"
+    "prettier": "^2.8.8"
   },
   "commitlint": {
     "extends": "@1stg"
