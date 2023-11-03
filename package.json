@@ -6,13 +6,13 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "prepare": "simple-git-hooks && yarn-deduplicate || exit 0"
+    "prepare": "simple-git-hooks || exit 0"
   },
   "devDependencies": {
-    "@1stg/common-config": "^6.1.4"
+    "@1stg/common-config": "^9.0.0"
   },
   "resolutions": {
-    "prettier": "^2.7.1"
+    "prettier": "^2.8.8"
   },
   "commitlint": {
     "extends": "@1stg"
