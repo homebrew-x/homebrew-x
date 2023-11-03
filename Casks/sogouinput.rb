@@ -1,9 +1,9 @@
 cask 'sogouinput' do
-  version '614d,1688992049,b6c2f07d9d87c7b279922082e385af05,202311031806'
+  version '614d'
   sha256 '9eb308751095b2870790253a454e0689ba63b782a1cd6b5ebe1607af1ab9c9c9'
 
-  url "http://ime-sec.gtimg.com/#{version.csv.fourth}/#{version.csv.third}/pc/dl/gzindex/#{version.csv.second}/sogou_mac_#{version.csv.first}.zip",
-      verified: 'ime-sec.gtimg.com/'
+  url "https://rabbit-linker.vercel.app/gtimg/sogou_mac/#{version}",
+      verified: 'rabbit-linker.vercel.app'
   name 'Sogou Input Method'
   name '搜狗输入法'
   desc 'Input method supporting full and double spelling'
@@ -14,16 +14,16 @@ cask 'sogouinput' do
     strategy :page_match do |page|
       match =
         page.match(
-          %r{/(\d+)/(.+)/pc/dl/gzindex/(\d+(?:\.\d+)*)/sogou_mac_(\d+(?:\.\d+)*[a-z]*)\.zip}i,
+          %r{https:\/\/ime-sec\.gtimg.com\/\d+\/\w+\/pc\/dl\/gzindex\/\d+\/sogou_mac_(\w+)\.zip}i,
         )
       next if match.blank?
-      "#{match[4]},#{match[3]},#{match[2]},#{match[1]}"
+      "#{match[1]}"
     end
   end
 
   auto_updates true
 
-  installer manual: "sogou_mac_#{version.csv.first}.app"
+  installer manual: "sogou_mac_#{version}.app"
 
   uninstall delete: [
               '/Library/Input Methods/SogouInput.app',
