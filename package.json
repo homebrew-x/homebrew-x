@@ -5,14 +5,18 @@
   "author": "JounQin <admin@1stg.me>",
   "license": "MIT",
   "private": true,
+  "packageManager": "yarn@4.0.1",
   "scripts": {
+    "lint": "eslint . --cache --max-warnings 10",
     "prepare": "simple-git-hooks || exit 0"
   },
   "devDependencies": {
-    "@1stg/common-config": "^9.0.0"
-  },
-  "resolutions": {
-    "prettier": "^2.8.8"
+    "@1stg/common-config": "^9.0.0",
+    "commitlint": "^18.4.0",
+    "eslint": "^8.53.0",
+    "lint-staged": "^13.3.0",
+    "prettier": "^2.8.8",
+    "simple-git-hooks": "^2.9.0"
   },
   "commitlint": {
     "extends": "@1stg"

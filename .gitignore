@@ -1,1 +1,4 @@
+.yarn/*
+!.yarn/plugins
+.*cache
 node_modules
