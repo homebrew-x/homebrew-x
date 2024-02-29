@@ -15,7 +15,7 @@ cask 'spotube' do
 
   depends_on macos: '>= :mojave'
 
-  app 'spotube.app'
+  app 'Spotube.app'
 
   caveats { unsigned_accessibility }
 end
