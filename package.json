@@ -13,7 +13,7 @@
   "devDependencies": {
     "@1stg/common-config": "^9.0.0",
     "commitlint": "^18.4.0",
-    "eslint": "^8.53.0",
+    "eslint": "^8.57.1",
     "lint-staged": "^13.3.0",
     "prettier": "^2.8.8",
     "simple-git-hooks": "^2.9.0"
