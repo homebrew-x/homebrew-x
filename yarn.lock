@@ -6740,7 +6740,7 @@ __metadata:
     eslint: "npm:^8.53.0"
     lint-staged: "npm:^13.3.0"
     prettier: "npm:^2.8.8"
-    simple-git-hooks: "npm:^2.9.0"
+    simple-git-hooks: "npm:^2.12.1"
   languageName: unknown
   linkType: soft
 
@@ -11610,7 +11610,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simple-git-hooks@npm:^2.8.1, simple-git-hooks@npm:^2.9.0":
+"simple-git-hooks@npm:^2.12.1":
+  version: 2.12.1
+  resolution: "simple-git-hooks@npm:2.12.1"
+  bin:
+    simple-git-hooks: cli.js
+  checksum: fef372413ad8c4fa32e71892a97f220d5f761f87b7a8f9bef0a68ee72b809fba83f253cf2c4e40c4e5b99c1b0ce6566bdd63a5db821b07ce4baa460478c72732
+  languageName: node
+  linkType: hard
+
+"simple-git-hooks@npm:^2.8.1":
   version: 2.9.0
   resolution: "simple-git-hooks@npm:2.9.0"
   bin:

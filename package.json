@@ -16,7 +16,7 @@
     "eslint": "^8.53.0",
     "lint-staged": "^13.3.0",
     "prettier": "^2.8.8",
-    "simple-git-hooks": "^2.9.0"
+    "simple-git-hooks": "^2.12.1"
   },
   "commitlint": {
     "extends": "@1stg"
