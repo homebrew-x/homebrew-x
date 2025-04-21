@@ -1,6 +1,6 @@
 cask 'sogouinput' do
-  version '614d'
-  sha256 '9eb308751095b2870790253a454e0689ba63b782a1cd6b5ebe1607af1ab9c9c9'
+  version '616d'
+  sha256 '07b3509e7de14c9d6fa6e512e41980ad22757855166f7e8a1d8e61cf7de87022'
 
   url "https://rabbit-linker.vercel.app/gtimg/sogou_mac/#{version}",
       verified: 'rabbit-linker.vercel.app'

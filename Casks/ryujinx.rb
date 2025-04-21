@@ -1,11 +1,11 @@
 cask 'ryujinx' do
-  version '1.1.1072'
-  sha256 '4e8991b7d0f9e760242a9634ed8fcc551130e1cd1c682dc2a87b47753792accc'
+  version '1.2.86'
+  sha256 '49fcd62a6a5b484a5b4bf7f3615a12fb8c4535bf8bbe4e9424159ce69183d515'
 
-  url "https://github.com/Ryujinx/release-channel-master/releases/download/#{version}/test-ava-ryujinx-#{version}-macos_universal.app.tar.gz"
+  url "https://github.com/Ryubing/Stable-Releases/releases/download/#{version}/ryujinx-#{version}-macos_universal.app.tar.gz"
   name 'Ryujinx'
   desc 'Experimental Nintendo Switch Emulator'
-  homepage 'https://ryujinx.org'
+  homepage 'https://ryujinx.app'
 
   livecheck do
     url :url

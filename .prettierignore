@@ -1,1 +1,3 @@
 .yarn
+# https://github.com/prettier/plugin-ruby/issues/1455
+*.rb
