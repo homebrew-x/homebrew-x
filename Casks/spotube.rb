@@ -1,6 +1,6 @@
 cask 'spotube' do
-  version '3.4.0'
-  sha256 '7627f679cdfb40bf4554f1a0aaabed076cd15fa3f7342b61e45167a40491fc0b'
+  version '4.0.2'
+  sha256 'd1e35e3290bcbac3df6ee8766a3e379fa28bcac450e79c8b74e4fb6797da54b5'
 
   url "https://github.com/KRTirtho/spotube/releases/download/v#{version}/Spotube-macos-universal.dmg",
       verified: 'github.com/KRTirtho/spotube/releases/download/'
@@ -15,7 +15,7 @@ cask 'spotube' do
 
   depends_on macos: '>= :mojave'
 
-  app 'spotube.app'
+  app 'Spotube.app'
 
   caveats { unsigned_accessibility }
 end
