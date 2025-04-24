@@ -2509,13 +2509,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pkgr/core@npm:^0.1.0":
-  version: 0.1.2
-  resolution: "@pkgr/core@npm:0.1.2"
-  checksum: 10c0/fd4acc154c8f1b5c544b6dd152b7ce68f6cbb8b92e9abf2e5d756d6e95052d08d0d693a668dea67af1386d62635b50adfe463cce03c5620402b468498cc7592f
-  languageName: node
-  linkType: hard
-
 "@pkgr/core@npm:^0.2.0, @pkgr/core@npm:^0.2.2, @pkgr/core@npm:^0.2.3, @pkgr/core@npm:^0.2.4":
   version: 0.2.4
   resolution: "@pkgr/core@npm:0.2.4"
@@ -2950,116 +2943,123 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-darwin-arm64@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-darwin-arm64@npm:1.6.4"
+"@unrs/resolver-binding-darwin-arm64@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-darwin-arm64@npm:1.6.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-darwin-x64@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-darwin-x64@npm:1.6.4"
+"@unrs/resolver-binding-darwin-x64@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-darwin-x64@npm:1.6.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-freebsd-x64@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-freebsd-x64@npm:1.6.4"
+"@unrs/resolver-binding-freebsd-x64@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-freebsd-x64@npm:1.6.6"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-linux-arm-gnueabihf@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-linux-arm-gnueabihf@npm:1.6.4"
+"@unrs/resolver-binding-linux-arm-gnueabihf@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-linux-arm-gnueabihf@npm:1.6.6"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-linux-arm-musleabihf@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-linux-arm-musleabihf@npm:1.6.4"
+"@unrs/resolver-binding-linux-arm-musleabihf@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-linux-arm-musleabihf@npm:1.6.6"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-linux-arm64-gnu@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-linux-arm64-gnu@npm:1.6.4"
+"@unrs/resolver-binding-linux-arm64-gnu@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-linux-arm64-gnu@npm:1.6.6"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-linux-arm64-musl@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-linux-arm64-musl@npm:1.6.4"
+"@unrs/resolver-binding-linux-arm64-musl@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-linux-arm64-musl@npm:1.6.6"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-linux-ppc64-gnu@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-linux-ppc64-gnu@npm:1.6.4"
+"@unrs/resolver-binding-linux-ppc64-gnu@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-linux-ppc64-gnu@npm:1.6.6"
   conditions: os=linux & cpu=ppc64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-linux-riscv64-gnu@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-linux-riscv64-gnu@npm:1.6.4"
+"@unrs/resolver-binding-linux-riscv64-gnu@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-linux-riscv64-gnu@npm:1.6.6"
   conditions: os=linux & cpu=riscv64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-linux-s390x-gnu@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-linux-s390x-gnu@npm:1.6.4"
+"@unrs/resolver-binding-linux-riscv64-musl@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-linux-riscv64-musl@npm:1.6.6"
+  conditions: os=linux & cpu=riscv64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@unrs/resolver-binding-linux-s390x-gnu@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-linux-s390x-gnu@npm:1.6.6"
   conditions: os=linux & cpu=s390x & libc=glibc
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-linux-x64-gnu@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-linux-x64-gnu@npm:1.6.4"
+"@unrs/resolver-binding-linux-x64-gnu@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-linux-x64-gnu@npm:1.6.6"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-linux-x64-musl@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-linux-x64-musl@npm:1.6.4"
+"@unrs/resolver-binding-linux-x64-musl@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-linux-x64-musl@npm:1.6.6"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-wasm32-wasi@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-wasm32-wasi@npm:1.6.4"
+"@unrs/resolver-binding-wasm32-wasi@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-wasm32-wasi@npm:1.6.6"
   dependencies:
     "@napi-rs/wasm-runtime": "npm:^0.2.9"
   conditions: cpu=wasm32
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-win32-arm64-msvc@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-win32-arm64-msvc@npm:1.6.4"
+"@unrs/resolver-binding-win32-arm64-msvc@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-win32-arm64-msvc@npm:1.6.6"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-win32-ia32-msvc@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-win32-ia32-msvc@npm:1.6.4"
+"@unrs/resolver-binding-win32-ia32-msvc@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-win32-ia32-msvc@npm:1.6.6"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@unrs/resolver-binding-win32-x64-msvc@npm:1.6.4":
-  version: 1.6.4
-  resolution: "@unrs/resolver-binding-win32-x64-msvc@npm:1.6.4"
+"@unrs/resolver-binding-win32-x64-msvc@npm:1.6.6":
+  version: 1.6.6
+  resolution: "@unrs/resolver-binding-win32-x64-msvc@npm:1.6.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -4472,9 +4472,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.73":
-  version: 1.5.140
-  resolution: "electron-to-chromium@npm:1.5.140"
-  checksum: 10c0/cd0c5a3e0624592494e03b1ae28e04b0d4f8dec0e2ff8fc0f38dc8622fdf795811ef8abe41167f03380f969515c2f4f23297f6e1372ff36aad01c78446565e6d
+  version: 1.5.141
+  resolution: "electron-to-chromium@npm:1.5.141"
+  checksum: 10c0/3e17fecee4420cfa312f5c38333b9428dec4fae8ebcc54bf20754e781d7551adfa2cd3b96f597e8323f2ac015d6050e60cc311011084ecd61ec7aaeff1b67dcf
   languageName: node
   linkType: hard
 
@@ -4628,13 +4628,6 @@ __metadata:
   version: 1.3.0
   resolution: "es-errors@npm:1.3.0"
   checksum: 10c0/0a61325670072f98d8ae3b914edab3559b6caa980f08054a3b872052640d91da01d38df55df797fcc916389d77fc92b8d5906cf028f4db46d7e3003abecbca85
-  languageName: node
-  linkType: hard
-
-"es-module-lexer@npm:^1.5.3":
-  version: 1.7.0
-  resolution: "es-module-lexer@npm:1.7.0"
-  checksum: 10c0/4c935affcbfeba7fb4533e1da10fa8568043df1e3574b869385980de9e2d475ddc36769891936dbb07036edb3c3786a8b78ccf44964cd130dedc1f2c984b6c7b
   languageName: node
   linkType: hard
 
@@ -4869,8 +4862,8 @@ __metadata:
   linkType: hard
 
 "eslint-plugin-jsdoc@npm:^50.6.9":
-  version: 50.6.9
-  resolution: "eslint-plugin-jsdoc@npm:50.6.9"
+  version: 50.6.10
+  resolution: "eslint-plugin-jsdoc@npm:50.6.10"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.49.0"
     are-docs-informative: "npm:^0.0.2"
@@ -4879,13 +4872,12 @@ __metadata:
     escape-string-regexp: "npm:^4.0.0"
     espree: "npm:^10.1.0"
     esquery: "npm:^1.6.0"
-    parse-imports: "npm:^2.1.1"
+    parse-imports-exports: "npm:^0.2.4"
     semver: "npm:^7.6.3"
     spdx-expression-parse: "npm:^4.0.0"
-    synckit: "npm:^0.9.1"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/cad199d262c2e889a3af4e402f6adc624e4273b3d5ca1940e7227b37d87af8090ca3444f7fff57f58dab9a827faed8722fc2f5d4daf31ec085eb00e9f5a338a7
+  checksum: 10c0/b85106e2ac32bb91eae578d65c704e97306a75eb9e53720b30ee9bd4eeb0bd116398e63fa884c7c350f673c8a8b7f0bf4560b4cbb5959456fb8d7747425953d5
   languageName: node
   linkType: hard
 
@@ -5896,7 +5888,7 @@ __metadata:
     eslint: "npm:^9.25.1"
     nano-staged: "npm:^0.8.0"
     prettier: "npm:^3.5.3"
-    simple-git-hooks: "npm:^2.12.1"
+    simple-git-hooks: "npm:^2.13.0"
     yarn-berry-deduplicate: "npm:^6.1.3"
   languageName: unknown
   linkType: soft
@@ -7862,11 +7854,11 @@ __metadata:
   linkType: hard
 
 "napi-postinstall@npm:^0.1.5":
-  version: 0.1.5
-  resolution: "napi-postinstall@npm:0.1.5"
+  version: 0.1.6
+  resolution: "napi-postinstall@npm:0.1.6"
   bin:
     napi-postinstall: lib/cli.js
-  checksum: 10c0/a6a6c8e26de4bbd5614496516c049ec90c34ab111c2cdbbd60c50b275512ccf85a1cceccefcb89dc26f149c33cc8cb272c0341623aa9ea12c37f725c36b95f56
+  checksum: 10c0/2dd11e7aec2677a1b9747c85c7b3eaa95b01e99f02353677729724c3e3ee9cb4a2c6b836aff5beabfd6bff54014518a094b820dabe5b6fcad7f65ddb424d392c
   languageName: node
   linkType: hard
 
@@ -8147,13 +8139,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse-imports@npm:^2.1.1":
-  version: 2.2.1
-  resolution: "parse-imports@npm:2.2.1"
+"parse-imports-exports@npm:^0.2.4":
+  version: 0.2.4
+  resolution: "parse-imports-exports@npm:0.2.4"
   dependencies:
-    es-module-lexer: "npm:^1.5.3"
-    slashes: "npm:^3.0.12"
-  checksum: 10c0/bc541ce4ef2ff77d53247de39a956e0ee7a1a4b9b175c3e0f898222fe7994595f011491154db4ed408cbaf5049ede9d0b6624125565be208e973a54420cbe069
+    parse-statements: "npm:1.0.11"
+  checksum: 10c0/51b729037208abdf65c4a1f8e9ed06f4e7ccd907c17c668a64db54b37d95bb9e92081f8b16e4133e14102af3cb4e89870975b6ad661b4d654e9ec8f4fb5c77d6
   languageName: node
   linkType: hard
 
@@ -8207,6 +8198,13 @@ __metadata:
   version: 1.0.0
   resolution: "parse-passwd@npm:1.0.0"
   checksum: 10c0/1c05c05f95f184ab9ca604841d78e4fe3294d46b8e3641d305dcc28e930da0e14e602dbda9f3811cd48df5b0e2e27dbef7357bf0d7c40e41b18c11c3a8b8d17b
+  languageName: node
+  linkType: hard
+
+"parse-statements@npm:1.0.11":
+  version: 1.0.11
+  resolution: "parse-statements@npm:1.0.11"
+  checksum: 10c0/48960e085019068a5f5242e875fd9d21ec87df2e291acf5ad4e4887b40eab6929a8c8d59542acb85a6497e870c5c6a24f5ab7f980ef5f907c14cc5f7984a93f3
   languageName: node
   linkType: hard
 
@@ -9967,19 +9965,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simple-git-hooks@npm:^2.12.1":
-  version: 2.12.1
-  resolution: "simple-git-hooks@npm:2.12.1"
+"simple-git-hooks@npm:^2.13.0":
+  version: 2.13.0
+  resolution: "simple-git-hooks@npm:2.13.0"
   bin:
     simple-git-hooks: cli.js
-  checksum: 10c0/06d62cdab6d5a5c107c350528574e86022e4ab082054d01b3c9c0f50948a9cf124c2200229abdc16f0b876056f824cc61a08a96f6966ff6c2f1d3640422cc9bb
-  languageName: node
-  linkType: hard
-
-"slashes@npm:^3.0.12":
-  version: 3.0.12
-  resolution: "slashes@npm:3.0.12"
-  checksum: 10c0/71ca2a1fcd1ab6814b0fdb8cf9c33a3d54321deec2aa8d173510f0086880201446021a9b9e6a18561f7c472b69a2145977c6a8fb9c53a8ff7be31778f203d175
+  checksum: 10c0/aebd7c36711d6805c1ecb26a53203c259d0587fdd214a650217dccd57a42fd808075e3f92826c5d4838b3e68870f5561820072a5989f039cb7659742421d3ceb
   languageName: node
   linkType: hard
 
@@ -10290,16 +10281,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"synckit@npm:^0.9.1":
-  version: 0.9.2
-  resolution: "synckit@npm:0.9.2"
-  dependencies:
-    "@pkgr/core": "npm:^0.1.0"
-    tslib: "npm:^2.6.2"
-  checksum: 10c0/e0c262817444e5b872708adb6f5ad37951ba33f6b2d1d4477d45db1f57573a784618ceed5e6614e0225db330632b1f6b95bb74d21e4d013e45ad4bde03d0cb59
-  languageName: node
-  linkType: hard
-
 "tapable@npm:^2.2.0":
   version: 2.2.1
   resolution: "tapable@npm:2.2.1"
@@ -10407,7 +10388,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.4.0, tslib@npm:^2.4.1, tslib@npm:^2.6.2, tslib@npm:^2.8.1":
+"tslib@npm:^2.4.0, tslib@npm:^2.4.1, tslib@npm:^2.8.1":
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: 10c0/9c4759110a19c53f992d9aae23aac5ced636e99887b51b9e61def52611732872ff7668757d4e4c61f19691e36f4da981cd9485e869b4a7408d689f6bf1f14e62
@@ -10750,25 +10731,26 @@ __metadata:
   linkType: hard
 
 "unrs-resolver@npm:^1.6.0, unrs-resolver@npm:^1.6.3":
-  version: 1.6.4
-  resolution: "unrs-resolver@npm:1.6.4"
+  version: 1.6.6
+  resolution: "unrs-resolver@npm:1.6.6"
   dependencies:
-    "@unrs/resolver-binding-darwin-arm64": "npm:1.6.4"
-    "@unrs/resolver-binding-darwin-x64": "npm:1.6.4"
-    "@unrs/resolver-binding-freebsd-x64": "npm:1.6.4"
-    "@unrs/resolver-binding-linux-arm-gnueabihf": "npm:1.6.4"
-    "@unrs/resolver-binding-linux-arm-musleabihf": "npm:1.6.4"
-    "@unrs/resolver-binding-linux-arm64-gnu": "npm:1.6.4"
-    "@unrs/resolver-binding-linux-arm64-musl": "npm:1.6.4"
-    "@unrs/resolver-binding-linux-ppc64-gnu": "npm:1.6.4"
-    "@unrs/resolver-binding-linux-riscv64-gnu": "npm:1.6.4"
-    "@unrs/resolver-binding-linux-s390x-gnu": "npm:1.6.4"
-    "@unrs/resolver-binding-linux-x64-gnu": "npm:1.6.4"
-    "@unrs/resolver-binding-linux-x64-musl": "npm:1.6.4"
-    "@unrs/resolver-binding-wasm32-wasi": "npm:1.6.4"
-    "@unrs/resolver-binding-win32-arm64-msvc": "npm:1.6.4"
-    "@unrs/resolver-binding-win32-ia32-msvc": "npm:1.6.4"
-    "@unrs/resolver-binding-win32-x64-msvc": "npm:1.6.4"
+    "@unrs/resolver-binding-darwin-arm64": "npm:1.6.6"
+    "@unrs/resolver-binding-darwin-x64": "npm:1.6.6"
+    "@unrs/resolver-binding-freebsd-x64": "npm:1.6.6"
+    "@unrs/resolver-binding-linux-arm-gnueabihf": "npm:1.6.6"
+    "@unrs/resolver-binding-linux-arm-musleabihf": "npm:1.6.6"
+    "@unrs/resolver-binding-linux-arm64-gnu": "npm:1.6.6"
+    "@unrs/resolver-binding-linux-arm64-musl": "npm:1.6.6"
+    "@unrs/resolver-binding-linux-ppc64-gnu": "npm:1.6.6"
+    "@unrs/resolver-binding-linux-riscv64-gnu": "npm:1.6.6"
+    "@unrs/resolver-binding-linux-riscv64-musl": "npm:1.6.6"
+    "@unrs/resolver-binding-linux-s390x-gnu": "npm:1.6.6"
+    "@unrs/resolver-binding-linux-x64-gnu": "npm:1.6.6"
+    "@unrs/resolver-binding-linux-x64-musl": "npm:1.6.6"
+    "@unrs/resolver-binding-wasm32-wasi": "npm:1.6.6"
+    "@unrs/resolver-binding-win32-arm64-msvc": "npm:1.6.6"
+    "@unrs/resolver-binding-win32-ia32-msvc": "npm:1.6.6"
+    "@unrs/resolver-binding-win32-x64-msvc": "npm:1.6.6"
     napi-postinstall: "npm:^0.1.5"
   dependenciesMeta:
     "@unrs/resolver-binding-darwin-arm64":
@@ -10789,6 +10771,8 @@ __metadata:
       optional: true
     "@unrs/resolver-binding-linux-riscv64-gnu":
       optional: true
+    "@unrs/resolver-binding-linux-riscv64-musl":
+      optional: true
     "@unrs/resolver-binding-linux-s390x-gnu":
       optional: true
     "@unrs/resolver-binding-linux-x64-gnu":
@@ -10803,7 +10787,7 @@ __metadata:
       optional: true
     "@unrs/resolver-binding-win32-x64-msvc":
       optional: true
-  checksum: 10c0/977b507fb2aac37201ed30992e9e7a61993b22777b89030277f1daf5b8aad5c3aec57cbf58ce746da54dda7a9141ff5d2ae276ea2d9ed862613aab4a3c7d198d
+  checksum: 10c0/bed907db2ab2b1c416e0ad504164172b75b38e56c1f8a691116d52b3456925a4f85888b81d0a53ded3d601b37353f45b229deb9cf7c70fdd1b12d58889349982
   languageName: node
   linkType: hard
 
