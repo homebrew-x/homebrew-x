@@ -12,9 +12,9 @@
     "prepare": "simple-git-hooks && yarn-berry-deduplicate|| exit 0"
   },
   "devDependencies": {
-    "@1stg/common-config": "^13.0.1",
-    "@commitlint/cli": "^19.8.0",
-    "eslint": "^9.25.1",
+    "@1stg/common-config": "^14.0.0",
+    "@commitlint/cli": "^19.8.1",
+    "eslint": "^9.27.0",
     "nano-staged": "^0.8.0",
     "prettier": "^3.5.3",
     "simple-git-hooks": "^2.13.0",
