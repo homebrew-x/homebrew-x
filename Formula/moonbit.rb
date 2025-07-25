@@ -6,7 +6,7 @@ class Moonbit < Formula
   desc 'An end-to-end programming language toolchain for cloud and edge computing using WebAssembly'
   homepage 'https://www.moonbitlang.com'
   license 'MIT'
-  version '0.6.20'
+  version '0.6.21'
 
   os = OS.mac? ? 'darwin' : 'linux'
   arch = Hardware::CPU.arm? ? 'aarch64' : 'x86_64'
@@ -18,14 +18,14 @@ class Moonbit < Formula
   # stree-ignore
   sha256 OS.mac? ?
     if Hardware::CPU.arm?
-      '099397a93ff3e3fd97f612c268c8eb146dd6a55f5b422d033fbfaeb88fd0aaa1'
+      'dd8a3ab26cce48885b9f5bcb0149c182ea8c252990adf7c2f0bfa64263334d54'
     else
-      'e5c74601ce26e5a62e82878dcf723c28ef52e660158111cd36d94874ce309e73'
+      '99fab8124b62960bd1085bb48a08877cba47a4e51cc4340da86e1870ca674c19'
     end :
     if Hardware::CPU.arm?
       '' # unavailable for linux arm64
     else
-      '5c5aacfe0e18a62a2a9dfda1ae7c292da252fc77628d548a06fff51b531238da'
+      '7f10cc9f3e6abf5e55171aaa99bc138aa98dc349bf89a3416f6d54e247708053'
     end
 
   def install
