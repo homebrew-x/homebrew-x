@@ -6,7 +6,7 @@
   "author": "JounQin <admin@1stg.me>",
   "license": "MIT",
   "private": true,
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.9.4",
   "scripts": {
     "lint": "eslint . --cache --max-warnings 10",
     "prepare": "simple-git-hooks && yarn-berry-deduplicate|| exit 0"
