@@ -6,27 +6,21 @@ class Moonbit < Formula
   desc 'An end-to-end programming language toolchain for cloud and edge computing using WebAssembly'
   homepage 'https://www.moonbitlang.com'
   license 'MIT'
-  version '0.6.27+5aa3a5173'
+  version '0.6.28+d96d14d39'
 
-  os = OS.mac? ? 'darwin' : 'linux'
-  arch = Hardware::CPU.arm? ? 'aarch64' : 'x86_64'
-  url "https://cli.moonbitlang.com/binaries/#{version.to_s.gsub('+', '%2B')}/moonbit-#{os}-#{arch}.tar.gz"
+  os_arch = OS.mac? ? 'darwin-aarch64' : 'linux-x86_64'
+  url "https://cli.moonbitlang.com/binaries/#{version.to_s.gsub('+', '%2B')}/moonbit-#{os_arch}.tar.gz"
 
   private def core_url =
     "https://cli.moonbitlang.com/cores/core-#{version.to_s.gsub('+', '%2B')}.tar.gz"
 
-  # stree-ignore
-  sha256 OS.mac? ?
-    if Hardware::CPU.arm?
-      'e4c1a7647a515d17d9bfb07057cb5e8a50dab2c47b83f39cc08ebb3c775076c6'
+  sha256(
+    if OS.mac?
+      '2580b532a52ca966a9fc39ec8753e9bb4738a1a2d49af823e4a99979b6f6e3b1'
     else
-      '5b74cee20fdc1c134c0fe0361cdbfce5b98cdc36cdaa105a52049916e7d88df5'
-    end :
-    if Hardware::CPU.arm?
-      '' # unavailable for linux arm64
-    else
-      '5588f066e08758953840fcb2681da816f45a7bd5794269f32c1057ee7fea39fa'
-    end
+      '14158aaa2c8f39f039809ad866e66cb8a3084814828d45f3aef57d03d1636bd5'
+    end,
+  )
 
   def install
     bin.install %w[
