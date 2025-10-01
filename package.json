@@ -6,14 +6,14 @@
   "author": "JounQin <admin@1stg.me>",
   "license": "MIT",
   "private": true,
-  "packageManager": "yarn@4.9.4",
+  "packageManager": "yarn@4.10.3",
   "scripts": {
     "lint": "eslint . --cache --max-warnings 10",
     "prepare": "simple-git-hooks && yarn-berry-deduplicate|| exit 0"
   },
   "devDependencies": {
     "@1stg/common-config": "^14.3.0",
-    "@commitlint/cli": "^19.8.1",
+    "@commitlint/cli": "^20.0.0",
     "eslint": "^9.36.0",
     "nano-staged": "^0.8.0",
     "prettier": "^3.6.2",
