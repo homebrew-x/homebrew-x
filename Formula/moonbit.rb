@@ -6,7 +6,7 @@ class Moonbit < Formula
   desc 'An end-to-end programming language toolchain for cloud and edge computing using WebAssembly'
   homepage 'https://www.moonbitlang.com'
   license 'MIT'
-  version '0.6.28+d96d14d39'
+  version '0.6.29+ba123eb00'
 
   os_arch = OS.mac? ? 'darwin-aarch64' : 'linux-x86_64'
   url "https://cli.moonbitlang.com/binaries/#{version.to_s.gsub('+', '%2B')}/moonbit-#{os_arch}.tar.gz"
@@ -16,9 +16,9 @@ class Moonbit < Formula
 
   sha256(
     if OS.mac?
-      '2580b532a52ca966a9fc39ec8753e9bb4738a1a2d49af823e4a99979b6f6e3b1'
+      '2f566bd82dbc9ff23226a434de263477d652432ae77a165bfc025d324a2875a0'
     else
-      '14158aaa2c8f39f039809ad866e66cb8a3084814828d45f3aef57d03d1636bd5'
+      '5f514346e9cf17454ed03edf5732d3a90738d958e6d10b51aebb20a76d9be062'
     end,
   )
 
