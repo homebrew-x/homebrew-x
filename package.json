@@ -6,16 +6,16 @@
   "author": "JounQin <admin@1stg.me>",
   "license": "MIT",
   "private": true,
-  "packageManager": "yarn@4.9.4",
+  "packageManager": "yarn@4.17.0",
   "scripts": {
     "lint": "eslint . --cache --max-warnings 10",
     "prepare": "simple-git-hooks && yarn-berry-deduplicate|| exit 0"
   },
   "devDependencies": {
-    "@1stg/common-config": "^14.3.0",
-    "@commitlint/cli": "^19.8.1",
-    "eslint": "^9.36.0",
-    "nano-staged": "^0.8.0",
+    "@1stg/common-config": "^15.0.0",
+    "@commitlint/cli": "^21.0.0",
+    "eslint": "^10.0.0",
+    "nano-staged": "^1.0.0",
     "prettier": "^3.6.2",
     "simple-git-hooks": "^2.13.1",
     "yarn-berry-deduplicate": "^6.1.3"
