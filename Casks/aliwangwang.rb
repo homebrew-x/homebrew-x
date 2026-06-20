@@ -1,9 +1,9 @@
 cask 'aliwangwang' do
-  version '10.01.02M'
-  sha256 '5a13d4890944a2a64b862cda41f9786e344b5e520e218dc37e9090ae282b0d8a'
+  version '10.01.06M'
+  sha256 '9957c3b7bdd031868af0187c0cb912f4c926f82221bbe34fb05f6eb1396fa5b0'
 
-  url "https://download.alicdn.com/wangwang/AliWangWang_(#{version}).dmg"
-  appcast "https://jdy.tmall.com/version/check?version=#{version}&nick=cask&platform=macww"
+  url "https://download.alicdn.com/wangwang/AliWangWang_(#{version}).dmg",
+      verified: 'download.alicdn.com/wangwang/'
   name 'Ali Wangwang'
   name '阿里旺旺'
   homepage 'https://pages.tmall.com/wow/qnww/act/index'

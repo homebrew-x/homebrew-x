@@ -1,11 +1,11 @@
 cask 'imfile' do
   arch arm: '-arm64'
 
-  version '1.0.8'
+  version '2.0.5'
   sha256 arm:
-           'e910960baf4982378496a234b59b03fe6ca45618de8e5c2713b9323a4d7cfff0',
+           'df792e55bfeae23679ba0bb1b53b9857067b91eaf0329dfe7e4c58372f2af88c',
          intel:
-           '96411654c8b21ebc97c888def6621e08c31aef51f0872b866ac461b5eaa48a4f'
+           'e7abf89f4e782963ee8423a36e819b00e10ff319fd7980246ca91976f5c21838'
 
   url "https://github.com/imfile-io/imfile-desktop/releases/download/v#{version}/imFile-#{version}#{arch}.dmg",
       verified: 'github.com/imfile-io/imfile-desktop/'
@@ -17,8 +17,6 @@ cask 'imfile' do
     url :url
     strategy :github_latest
   end
-
-  depends_on macos: '>= :high_sierra'
 
   app 'imFile.app'
 
