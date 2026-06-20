@@ -11,7 +11,7 @@ cask 'imfile' do
       verified: 'github.com/imfile-io/imfile-desktop/'
   name 'imFile'
   desc 'Open-source download manager'
-  homepage 'https://imfile.io/'
+  homepage 'https://imfile.org/'
 
   depends_on macos: :monterey
 
