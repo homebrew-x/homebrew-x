@@ -1,3 +1,4 @@
+.ruby-lsp
 .yarn/*
 !.yarn/plugins
 !.yarn/releases

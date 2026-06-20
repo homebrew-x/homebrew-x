@@ -1,9 +1,9 @@
 cask 'sogouinput' do
-  version '616d'
-  sha256 '07b3509e7de14c9d6fa6e512e41980ad22757855166f7e8a1d8e61cf7de87022'
+  version '623a'
+  sha256 'a31532d5734a581fe8fdef9171fc2a0920e5531a5ea83c9da6ad0dd9f48989ab'
 
-  url "https://rabbit-linker.vercel.app/gtimg/sogou_mac/#{version}",
-      verified: 'rabbit-linker.vercel.app'
+  url "https://ime.gtimg.com/pc/sogou_mac_#{version}.zip",
+      verified: 'ime.gtimg.com'
   name 'Sogou Input Method'
   name '搜狗输入法'
   desc 'Input method supporting full and double spelling'
@@ -11,25 +11,19 @@ cask 'sogouinput' do
 
   livecheck do
     url :homepage
-    strategy :page_match do |page|
-      match =
-        page.match(
-          %r{https:\/\/ime-sec\.gtimg.com\/\d+\/\w+\/pc\/dl\/gzindex\/\d+\/sogou_mac_(\w+)\.zip}i,
-        )
-      next if match.blank?
-      "#{match[1]}"
-    end
+    regex(%r{https?://ime\.gtimg\.com/pc/sogou_mac_(\h+)\.zip}i)
   end
 
   auto_updates true
+  depends_on :macos
 
   installer manual: "sogou_mac_#{version}.app"
 
-  uninstall delete: [
+  uninstall launchctl: 'com.sogou.SogouServices',
+            delete: [
               '/Library/Input Methods/SogouInput.app',
               '/Library/QuickLook/SogouSkinFileQuickLook.qlgenerator',
-            ],
-            launchctl: 'com.sogou.SogouServices'
+            ]
 
   zap trash: [
         '~/.sogouinput',
