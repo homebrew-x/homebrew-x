@@ -13,6 +13,8 @@ cask 'imfile' do
   desc 'Open-source download manager'
   homepage 'https://imfile.io/'
 
+  depends_on macos: :monterey
+
   livecheck do
     url :url
     strategy :github_latest
