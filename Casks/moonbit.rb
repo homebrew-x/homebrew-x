@@ -10,7 +10,7 @@ cask 'moonbit' do
   on_macos do
     arch arm: 'aarch64'
 
-    sha256 '60080a3eefae0387b667f517249a70b767b374c00d2232ee7337add9f7f72487'
+    sha256 '9f949682cfbf438b7aa9ca93d44fe462dd6c522d89b0b9bd39f87dabf8d86551'
 
     depends_on arch: :arm64
   end
@@ -23,7 +23,7 @@ cask 'moonbit' do
              '3c5017f569284802f1a0b8422d149963a01ca587c514451164aef91c65df8aa8'
   end
 
-  version '0.10.0+e66899a54,2cc387cb0f473ec101a7e0673800149c884781216445f0604ed5f1e110cf73ea'
+  version '0.10.4+2cc641edf,03ad55b99f3e431f3cb81b4e2bb28bb98173304e4a1b18a891ea027cabba5d1c'
 
   url "https://cli.moonbitlang.com/binaries/#{version.csv.first.gsub('+', '%2B')}/moonbit-#{os}-#{arch}.tar.gz"
   name 'MoonBit'
