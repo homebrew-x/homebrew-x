@@ -57,7 +57,6 @@ cask 'moonbit' do
   binary 'bin/moon-lsp'
   binary 'bin/moon-wasm-opt'
   binary 'bin/moon_cove_report'
-  binary 'bin/moonbit-lsp'
   binary 'bin/moonc'
   binary 'bin/mooncake'
   binary 'bin/moondoc'
