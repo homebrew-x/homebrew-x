@@ -7,10 +7,12 @@ require 'zlib'
 cask 'moonbit' do
   os macos: 'darwin', linux: 'linux'
 
+  version '0.10.7+bc794d341,06922d35dd94dc0baea7682295fe6084f0d854eed3b497cd6b527f77d899a7f5'
+
   on_macos do
     arch arm: 'aarch64'
 
-    sha256 '9f949682cfbf438b7aa9ca93d44fe462dd6c522d89b0b9bd39f87dabf8d86551'
+    sha256 'b4781a1e38c800d1fd65693b1970b2d2429faef31d8933d266a1f6e2693a96ef'
 
     depends_on arch: :arm64
   end
@@ -18,21 +20,19 @@ cask 'moonbit' do
     arch arm: 'aarch64', intel: 'x86_64'
 
     sha256 arm:
-             '7f0e0bcb3a1b3d629a0d5ffdb1ab6d6d0ce3b3619775127ec0b86bff876d568e',
+             '400d271de568d50c921b07c1d3be71723440e9ece898240e57a75de6ebf4c80a',
            intel:
-             '3c5017f569284802f1a0b8422d149963a01ca587c514451164aef91c65df8aa8'
+             '36f5e7cf1545594e17cd3f1c0b757fe6e86ad0218bc96f419369cbb8502e62ba'
   end
-
-  version '0.10.4+2cc641edf,03ad55b99f3e431f3cb81b4e2bb28bb98173304e4a1b18a891ea027cabba5d1c'
 
   url "https://cli.moonbitlang.com/binaries/#{version.csv.first.gsub('+', '%2B')}/moonbit-#{os}-#{arch}.tar.gz"
   name 'MoonBit'
-  desc 'An end-to-end programming language toolchain for cloud and edge computing using WebAssembly'
+  desc 'End-to-end programming language toolchain for cloud and edge computing using WebAssembly'
   homepage 'https://www.moonbitlang.com/'
 
   livecheck do
     url 'https://cli.moonbitlang.com/cores/core-latest.tar.gz'
-    strategy :header_match do |headers|
+    strategy :header_match do |_headers|
       core_download = CurlDownloadStrategy.new(url, 'moonbit-core', 'latest')
       core_download.quiet!
       core_download.fetch
