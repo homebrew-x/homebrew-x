@@ -7,12 +7,12 @@ require 'zlib'
 cask 'moonbit' do
   os macos: 'darwin', linux: 'linux'
 
-  version '0.10.7+bc794d341,06922d35dd94dc0baea7682295fe6084f0d854eed3b497cd6b527f77d899a7f5'
+  version '0.10.8+8606a5800,858a4d2d505bfd2db43176a76f3f02457d5cf080e35231bfb9c78e33e9c6719d'
 
   on_macos do
     arch arm: 'aarch64'
 
-    sha256 'b4781a1e38c800d1fd65693b1970b2d2429faef31d8933d266a1f6e2693a96ef'
+    sha256 'd9527dbb7e955b55888ffa45cc89740b9139dff6e0dc02edf4b9b66a9d5e513b'
 
     depends_on arch: :arm64
   end
@@ -20,9 +20,9 @@ cask 'moonbit' do
     arch arm: 'aarch64', intel: 'x86_64'
 
     sha256 arm:
-             '400d271de568d50c921b07c1d3be71723440e9ece898240e57a75de6ebf4c80a',
+             'be3bf32705e73ab456f7cf8f267aed7ddf353dcd86b03ba53da6e340d6562049',
            intel:
-             '36f5e7cf1545594e17cd3f1c0b757fe6e86ad0218bc96f419369cbb8502e62ba'
+             'ac66bf5c04c00bb8e1512d2bfc2cc9801d24a60429302bab48320a5d68ca20a2'
   end
 
   url "https://cli.moonbitlang.com/binaries/#{version.csv.first.gsub('+', '%2B')}/moonbit-#{os}-#{arch}.tar.gz"
@@ -32,7 +32,7 @@ cask 'moonbit' do
 
   livecheck do
     url 'https://cli.moonbitlang.com/cores/core-latest.tar.gz'
-    strategy :header_match do |_headers|
+    strategy :header_match do |headers|
       core_download = CurlDownloadStrategy.new(url, 'moonbit-core', 'latest')
       core_download.quiet!
       core_download.fetch
