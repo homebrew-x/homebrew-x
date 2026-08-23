@@ -1,0 +1,53 @@
+name: Bump casks
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch: ~
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bump-casks
+  cancel-in-progress: true
+
+jobs:
+  bump:
+    runs-on: macos-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      HOMEBREW_NO_ANALYTICS: '1'
+      HOMEBREW_NO_AUTO_UPDATE: '1'
+    steps:
+      - name: Tap repository
+        run: brew tap ${{ github.repository }}
+
+      - name: Bump and commit out-of-date casks
+        run: |
+          set -euo pipefail
+          cd "$(brew --repository "${{ github.repository }}")"
+
+          livecheck_json="$(brew livecheck --cask --newer-only --json --quiet --tap "${{ github.repository }}" 2>/dev/null || true)"
+
+          if [ -n "$livecheck_json" ]; then
+            printf '%s' "$livecheck_json" \
+              | jq -r '.[] | [.cask, .version.latest] | @tsv' \
+              | while IFS=$'\t' read -r cask latest; do
+                  [ -n "${cask:-}" ] && [ -n "${latest:-}" ] || continue
+                  if brew bump-cask-pr --write-only --no-audit --no-style --version="$latest" "$cask"; then
+                    echo "Bumped ${cask} to ${latest}"
+                  else
+                    echo "::warning::Failed to bump ${cask}"
+                  fi
+                done
+          fi
+
+          git add Casks
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore(deps): update casks"
+            gh auth setup-git
+            git push origin HEAD
+          fi
