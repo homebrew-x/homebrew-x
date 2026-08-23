@@ -7,12 +7,12 @@ require 'zlib'
 cask 'moonbit' do
   os macos: 'darwin', linux: 'linux'
 
-  version '0.10.8+8606a5800,858a4d2d505bfd2db43176a76f3f02457d5cf080e35231bfb9c78e33e9c6719d'
+  version '0.10.9+6e6c44045,d92b84ea0bc11ec9a9fe57d313416a6694a5826f4307e8e65d5075079ee913ca'
 
   on_macos do
     arch arm: 'aarch64'
 
-    sha256 'd9527dbb7e955b55888ffa45cc89740b9139dff6e0dc02edf4b9b66a9d5e513b'
+    sha256 '4197777e251a9f379f4133896876476c9a92c9cd1ddcf5287a277fbe56295f4a'
 
     depends_on arch: :arm64
   end
@@ -20,9 +20,9 @@ cask 'moonbit' do
     arch arm: 'aarch64', intel: 'x86_64'
 
     sha256 arm:
-             'be3bf32705e73ab456f7cf8f267aed7ddf353dcd86b03ba53da6e340d6562049',
+             'c0ffca3aae85794dfd0a4773ac046a57441da8f219d3319190546a8eac821193',
            intel:
-             'ac66bf5c04c00bb8e1512d2bfc2cc9801d24a60429302bab48320a5d68ca20a2'
+             '0e81deb35eca29e892415cf954ea42b48a43bcf277ad36a3ae1e97d2d1dfe732'
   end
 
   url "https://cli.moonbitlang.com/binaries/#{version.csv.first.gsub('+', '%2B')}/moonbit-#{os}-#{arch}.tar.gz"
