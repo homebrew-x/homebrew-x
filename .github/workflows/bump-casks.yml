@@ -30,7 +30,8 @@ jobs:
           cd "$(brew --repository "${{ github.repository }}")"
 
           echo "::group::brew livecheck"
-          livecheck_out="$(brew livecheck --cask --newer-only --tap "${{ github.repository }}" || true)"
+          livecheck_status=0
+          livecheck_out="$(brew livecheck --cask --newer-only --tap "${{ github.repository }}")" || livecheck_status=$?
           printf '%s\n' "$livecheck_out"
           echo "::endgroup::"
 
@@ -54,4 +55,9 @@ jobs:
             git commit -m "chore(deps): update casks"
             gh auth setup-git
             git push origin HEAD
+          fi
+
+          if [ "$livecheck_status" -ne 0 ]; then
+            echo "::error::brew livecheck failed (exit ${livecheck_status})"
+            exit "$livecheck_status"
           fi
