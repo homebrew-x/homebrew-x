@@ -19,6 +19,7 @@ jobs:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
       HOMEBREW_NO_ANALYTICS: '1'
       HOMEBREW_NO_AUTO_UPDATE: '1'
+      HOMEBREW_NO_REQUIRE_TAP_TRUST: '1'
     steps:
       - name: Tap repository
         run: brew tap ${{ github.repository }}
