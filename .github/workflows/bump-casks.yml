@@ -41,7 +41,7 @@ jobs:
                 cask="${line%%:*}"
                 latest="${line##* ==> }"
                 [ -n "$cask" ] && [ -n "$latest" ] || continue
-                if brew bump-cask-pr --write-only --no-audit --no-style --version="$latest" "${{ github.repository }}/$cask"; then
+                if brew bump-cask-pr --write-only --no-audit --no-style --version="$latest" "Casks/$cask.rb"; then
                   echo "Bumped ${cask} to ${latest}"
                 else
                   echo "::warning::Failed to bump ${cask}"
