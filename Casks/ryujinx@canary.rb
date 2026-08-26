@@ -1,6 +1,6 @@
 cask 'ryujinx@canary' do
-  version "1.3.350"
-  sha256 "ce24012f6460cdaa2676a6986b13b4c8d9de497ee8793cb071fa1a7623f1f27c"
+  version "1.3.351"
+  sha256 "bcdac85194e89e6f5ad19282b91af7a5f8c8a08aa908040750b688028efa7212"
 
   url "https://git.ryujinx.app/Ryubing/Canary/releases/download/#{version}/ryujinx-canary-#{version}-macos_universal.app.tar.gz"
   name 'Ryujinx Canary'
