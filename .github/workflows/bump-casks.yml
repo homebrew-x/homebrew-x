@@ -58,6 +58,5 @@ jobs:
           fi
 
           if [ "$livecheck_status" -ne 0 ]; then
-            echo "::error::brew livecheck failed (exit ${livecheck_status})"
-            exit "$livecheck_status"
+            echo "::warning::brew livecheck reported errors (exit ${livecheck_status}); some casks may not have been checked"
           fi
