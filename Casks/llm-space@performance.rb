@@ -1,11 +1,11 @@
 cask 'llm-space@performance' do
   arch arm: 'arm64', intel: 'x64'
 
-  version "4.16.0"
+  version "4.17.0"
   sha256 arm:
-           "e6767df687fcf7b6f7af8919c018f77ef0f8b9554d316808a7c9b52d574b20b1",
+           "aa200aa359ac535e2fa4cf3f4e7c54e347de935f982c918c1ccf907d74f28e3e",
          intel:
-           "bac83c2fee4dd9ec095efc5be62a2b184e934be31fc0f729d00f764c6273c56e"
+           "e96d5f255e793f766e5f19ede3666814def3387b24ca114877b74ed002df3d35"
 
   url "https://github.com/deer-flow/llm-space/releases/download/v#{version}/LLMSpace-performance-v#{version}-macos-#{arch}.dmg",
       verified: 'github.com/deer-flow/llm-space/'
