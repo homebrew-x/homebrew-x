@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   bump:
-    if: github.ref == 'refs/heads/master'
+    if: github.ref_name == github.event.repository.default_branch
     runs-on: macos-latest
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
