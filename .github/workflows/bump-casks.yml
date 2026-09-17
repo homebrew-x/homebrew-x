@@ -14,6 +14,7 @@ concurrency:
 
 jobs:
   bump:
+    if: github.ref == 'refs/heads/master'
     runs-on: macos-latest
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
