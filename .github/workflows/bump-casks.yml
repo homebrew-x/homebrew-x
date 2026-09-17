@@ -21,17 +21,17 @@ jobs:
       HOMEBREW_NO_AUTO_UPDATE: '1'
       HOMEBREW_NO_REQUIRE_TAP_TRUST: '1'
     steps:
+      # `actions/setup-node` can only resolve its yarn cache from a lockfile in
+      # the workspace, so check out the repository even though the bump runs
+      # against the `brew tap` clone created below.
       - name: Checkout Repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      # `brew` only finds taps under its own tap directory, so link the checked
-      # out repository there instead of cloning it a second time.
-      - name: Link tap
+      - name: Tap repository
+        id: tap
         run: |
-          tap_dir="$(brew --repository "${{ github.repository }}")"
-          mkdir -p "$(dirname "$tap_dir")"
-          rm -rf "$tap_dir"
-          ln -s "$GITHUB_WORKSPACE" "$tap_dir"
+          brew tap ${{ github.repository }}
+          echo "path=$(brew --repository "${{ github.repository }}")" >> "$GITHUB_OUTPUT"
 
       - name: Check for out-of-date casks
         id: livecheck
@@ -70,6 +70,7 @@ jobs:
       - name: Install dependencies
         if: steps.livecheck.outputs.has_updates == 'true'
         run: yarn --no-immutable
+        working-directory: ${{ steps.tap.outputs.path }}
 
       - name: Install syntax_tree
         if: steps.livecheck.outputs.has_updates == 'true'
@@ -77,6 +78,7 @@ jobs:
 
       - name: Bump and commit out-of-date casks
         if: steps.livecheck.outputs.has_updates == 'true'
+        working-directory: ${{ steps.tap.outputs.path }}
         run: |
           set -euo pipefail
 
