@@ -19,9 +19,9 @@ cask 'moonbit' do
   on_linux do
     arch arm: 'aarch64', intel: 'x86_64'
 
-    sha256 arm:
+    sha256 arm64_linux:
              'c0ffca3aae85794dfd0a4773ac046a57441da8f219d3319190546a8eac821193',
-           intel:
+           x86_64_linux:
              '0e81deb35eca29e892415cf954ea42b48a43bcf277ad36a3ae1e97d2d1dfe732'
   end
 

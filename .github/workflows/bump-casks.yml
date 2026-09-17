@@ -19,7 +19,6 @@ jobs:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
       HOMEBREW_NO_ANALYTICS: '1'
       HOMEBREW_NO_AUTO_UPDATE: '1'
-      HOMEBREW_NO_REQUIRE_TAP_TRUST: '1'
     steps:
       # `actions/setup-node` can only resolve its yarn cache from a lockfile in
       # the workspace, so check out the repository even though the bump runs
@@ -31,6 +30,7 @@ jobs:
         id: tap
         run: |
           brew tap ${{ github.repository }}
+          brew trust --tap "${{ github.repository }}"
           echo "path=$(brew --repository "${{ github.repository }}")" >> "$GITHUB_OUTPUT"
 
       - name: Check for out-of-date casks
