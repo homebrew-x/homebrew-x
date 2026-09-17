@@ -1,7 +1,5 @@
-require 'cask/quarantine'
 require 'download_strategy'
 require 'rubygems/package'
-require 'unpack_strategy'
 require 'zlib'
 
 cask 'moonbit' do
@@ -64,43 +62,46 @@ cask 'moonbit' do
   binary 'bin/mooninfo'
   binary 'bin/moonrun'
 
-  postflight do
-    core_download =
-      CurlDownloadStrategy.new(
-        "https://cli.moonbitlang.com/cores/core-#{version.csv.first.gsub('+', '%2B')}.tar.gz",
-        'moonbit-core',
-        version.csv.first,
-      )
+  core_url =
+    "https://cli.moonbitlang.com/cores/core-#{version.csv.first.gsub('+', '%2B')}.tar.gz"
+  core_sha256 = version.csv.second
 
-    set_permissions Dir[staged_path / 'bin/*'], '+x'
-    set_permissions staged_path / 'bin/internal/tcc', '+x'
-    if OS.mac?
-      Pathname
-        .glob(staged_path / '**/*', File::FNM_DOTMATCH)
-        .reject(&:symlink?)
-        .each { |path| Object::Cask::Quarantine.release!(download_path: path) }
+  # The standard library is a second download that has to be verified and
+  # bundled with the toolchain, which is not expressible as a cask resource.
+  postflight_steps do
+    set_permissions 'bin/*', '+x'
+
+    on_macos do
+      run 'xattr',
+          args: %w[-dr com.apple.quarantine {{staged_path}}],
+          must_succeed: false,
+          print_stderr: false
     end
 
-    core_download.fetch
-    if Digest::SHA256.file(core_download.cached_location).hexdigest !=
-         version.csv.second
-      raise 'MoonBit core checksum mismatch'
-    end
+    run 'curl',
+        args: [
+          '--fail',
+          '--show-error',
+          '--silent',
+          '--location',
+          '--output',
+          '{{staged_path}}/core.tar.gz',
+          core_url,
+        ],
+        network_access: true
 
-    core_path = staged_path / 'lib/core'
-    Utils.gain_permissions_remove(core_path) if core_path.directory?
-    UnpackStrategy.detect(core_download.cached_location).extract_nestedly(
-      to: staged_path / 'lib',
-    )
+    write_file 'core.sha256',
+               "#{core_sha256}  {{staged_path}}/core.tar.gz",
+               append_newline: true
 
-    system_command staged_path / 'bin/moon',
-                   args: [
-                     '-C',
-                     staged_path / 'lib/core',
-                     'bundle',
-                     '--warn-list',
-                     '-a',
-                     '--all',
-                   ]
+    on_macos { run 'shasum', args: %w[-a 256 -c {{staged_path}}/core.sha256] }
+    on_linux { run 'sha256sum', args: %w[-c {{staged_path}}/core.sha256] }
+
+    remove 'lib/core', recursive: true
+    run 'tar', args: %w[-xzf {{staged_path}}/core.tar.gz -C {{staged_path}}/lib]
+    run '{{staged_path}}/bin/moon',
+        args: %w[-C {{staged_path}}/lib/core bundle --warn-list -a --all]
+
+    remove %w[core.tar.gz core.sha256]
   end
 end
