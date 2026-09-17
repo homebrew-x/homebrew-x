@@ -6,22 +6,19 @@ cask 'moonbit' do
   os macos: 'darwin', linux: 'linux'
 
   version '0.10.13+cbb11c36f,d36b64c42df3019d9da87291e40738e90623c0380d0e200a62156091fb00c176'
+  sha256 arm:
+           '8f33fbbdca7af16034cce40af12661a0aa50d92afa32abadac9a1964dcd57766',
+         arm64_linux:
+           '04e8b74192a57f4f9e9c3a4537d1e1a79016779bd52d6631d895420723bdd9ff',
+         x86_64_linux:
+           'ef643f267d5ee075dbafd54b44b0a26c55116340515dca07294c2a0b83479a8b'
 
   on_macos do
     arch arm: 'aarch64'
 
-    sha256 '8f33fbbdca7af16034cce40af12661a0aa50d92afa32abadac9a1964dcd57766'
-
     depends_on arch: :arm64
   end
-  on_linux do
-    arch arm: 'aarch64', intel: 'x86_64'
-
-    sha256 arm64_linux:
-             '04e8b74192a57f4f9e9c3a4537d1e1a79016779bd52d6631d895420723bdd9ff',
-           x86_64_linux:
-             'ef643f267d5ee075dbafd54b44b0a26c55116340515dca07294c2a0b83479a8b'
-  end
+  on_linux { arch arm: 'aarch64', intel: 'x86_64' }
 
   url "https://cli.moonbitlang.com/binaries/#{version.csv.first.gsub('+', '%2B')}/moonbit-#{os}-#{arch}.tar.gz"
   name 'MoonBit'
@@ -30,7 +27,7 @@ cask 'moonbit' do
 
   livecheck do
     url 'https://cli.moonbitlang.com/cores/core-latest.tar.gz'
-    strategy :header_match do |headers|
+    strategy :header_match do |_headers|
       core_download = CurlDownloadStrategy.new(url, 'moonbit-core', 'latest')
       core_download.quiet!
       core_download.fetch
@@ -67,7 +64,7 @@ cask 'moonbit' do
   core_sha256 = version.csv.second
 
   # The standard library is a second download that has to be verified and
-  # bundled with the toolchain, which is not expressible as a cask resource.
+  # bundled with the toolchain; casks have no `resource` for it.
   postflight_steps do
     set_permissions 'bin/*', '+x'
 
