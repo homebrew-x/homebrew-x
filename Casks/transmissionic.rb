@@ -2,8 +2,7 @@ cask 'transmissionic' do
   version '1.8.0'
   sha256 'badfc69a0281311afdec2f2a13be3bf90c7ee95a22e9d68ca4277ce0a37dea43'
 
-  url "https://github.com/6c65726f79/Transmissionic/releases/download/v#{version}/Transmissionic-mac-v#{version}.dmg",
-      verified: 'github.com/6c65726f79/Transmissionic/'
+  url "https://github.com/6c65726f79/Transmissionic/releases/download/v#{version}/Transmissionic-mac-v#{version}.dmg"
   name 'Transmissionic'
   desc 'Remote for Transmission Daemon'
   homepage 'https://github.com/6c65726f79/Transmissionic'

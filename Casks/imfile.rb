@@ -7,8 +7,7 @@ cask 'imfile' do
          intel:
            'ff3731599e4f70387852d548f7192daa708ca3789f82e0bfa8d33a6c846e355e'
 
-  url "https://github.com/imfile-io/imfile-desktop/releases/download/v#{version}/imFile-#{version}#{arch}.dmg",
-      verified: 'github.com/imfile-io/imfile-desktop/'
+  url "https://github.com/imfile-io/imfile-desktop/releases/download/v#{version}/imFile-#{version}#{arch}.dmg"
   name 'imFile'
   desc 'Open-source download manager'
   homepage 'https://imfile.org/'

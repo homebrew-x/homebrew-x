@@ -7,8 +7,7 @@ cask 'llm-space' do
          intel:
            'c5870eded6a52fa0e1a39c52bf1d7dae7582a68555db544e27a87525b9c661d4'
 
-  url "https://github.com/deer-flow/llm-space/releases/download/v#{version}/LLMSpace-v#{version}-macos-#{arch}.dmg",
-      verified: 'github.com/deer-flow/llm-space/'
+  url "https://github.com/deer-flow/llm-space/releases/download/v#{version}/LLMSpace-v#{version}-macos-#{arch}.dmg"
   name 'LLM Space'
   desc 'Prototype agent ideas, inspect harness steps, replay failures, and evaluate performance'
   homepage 'https://deer-flow.github.io/llm-space/'
