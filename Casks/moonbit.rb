@@ -27,7 +27,8 @@ cask 'moonbit' do
 
   livecheck do
     url 'https://cli.moonbitlang.com/cores/core-latest.tar.gz'
-    strategy :header_match do |_headers|
+    strategy :header_match do |headers|
+      _ = headers # To appease `brew style` without modifying arg name
       core_download = CurlDownloadStrategy.new(url, 'moonbit-core', 'latest')
       core_download.quiet!
       core_download.fetch
