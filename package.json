@@ -13,7 +13,7 @@
     "prepare": "simple-git-hooks && yarn-berry-deduplicate || exit 0"
   },
   "devDependencies": {
-    "@1stg/common-config": "^16.0.0",
+    "@1stg/common-config": "^17.0.0",
     "@commitlint/cli": "^21.2.4",
     "@typescript/native": "npm:typescript@^7.0.2",
     "eslint": "^10.13.0",
