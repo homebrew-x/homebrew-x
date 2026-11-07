@@ -49,6 +49,7 @@ jobs:
         shell: bash
         env:
           BASE_REF: ${{ github.base_ref }}
+          BEFORE_SHA: ${{ github.event.before }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
           # shellcheck shell=bash
@@ -60,8 +61,11 @@ jobs:
 
           changes="$(mktemp)"
           if [[ "$EVENT_NAME" == "pull_request" ]]; then
-            git fetch --no-tags origin "$BASE_REF"
             git diff --name-only --diff-filter=ACMR "origin/$BASE_REF" HEAD -- Casks Formula > "$changes"
+          elif [[ "$EVENT_NAME" == "push" ]] &&
+               [[ -n "$BEFORE_SHA" && "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]] &&
+               git cat-file -e "${BEFORE_SHA}^{commit}" 2>/dev/null; then
+            git diff --name-only --diff-filter=ACMR "$BEFORE_SHA" HEAD -- Casks Formula > "$changes"
           elif [[ "$EVENT_NAME" == "push" ]] && git rev-parse --verify HEAD^ >/dev/null 2>&1; then
             git diff --name-only --diff-filter=ACMR HEAD^ HEAD -- Casks Formula > "$changes"
           else
@@ -154,7 +158,7 @@ jobs:
                 fi
               done <<<"$targets"
             elif ! output="$(brew test "$full" 2>&1)"; then
-              if grep -q 'No test' <<<"$output"; then
+              if grep -q 'defines no test' <<<"$output"; then
                 echo "::notice::${full} has no test to run."
               else
                 echo "$output"
