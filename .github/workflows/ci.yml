@@ -1,0 +1,166 @@
+name: CI
+
+on:
+  pull_request:
+    paths:
+      - 'Casks/**'
+      - 'Formula/**'
+      - '.github/workflows/ci.yml'
+  push:
+    branches:
+      - master
+    paths:
+      - 'Casks/**'
+      - 'Formula/**'
+      - '.github/workflows/ci.yml'
+  workflow_dispatch: ~
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  install:
+    name: Install (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+    env:
+      HOMEBREW_NO_ANALYTICS: '1'
+      HOMEBREW_NO_AUTO_UPDATE: '1'
+      HOMEBREW_NO_ENV_HINTS: '1'
+      HOMEBREW_NO_INSTALL_CLEANUP: '1'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@c262868c096d909fc278daa87ed9772967331ea3 # 2026.11.02.1
+      - name: Install changed formulae and casks
+        shell: bash
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          # shellcheck shell=bash
+          set -euo pipefail
+
+          tap_owner="${GITHUB_REPOSITORY%%/*}"
+          tap_repo="${GITHUB_REPOSITORY#*/}"
+          tap="${tap_owner}/${tap_repo#homebrew-}"
+
+          changes="$(mktemp)"
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            git fetch --no-tags origin "$BASE_REF"
+            git diff --name-only --diff-filter=ACMR "origin/$BASE_REF" HEAD -- Casks Formula > "$changes"
+          elif [[ "$EVENT_NAME" == "push" ]] && git rev-parse --verify HEAD^ >/dev/null 2>&1; then
+            git diff --name-only --diff-filter=ACMR HEAD^ HEAD -- Casks Formula > "$changes"
+          else
+            find Casks Formula -maxdepth 1 -type f -name '*.rb' | sort > "$changes"
+          fi
+
+          if [[ ! -s "$changes" ]]; then
+            echo 'No formula or cask changes to test.'
+            exit 0
+          fi
+
+          depends_on_macos() { grep -qE 'depends_on :macos|depends_on macos:' "$1"; }
+          depends_on_linux() { grep -qE 'depends_on :linux|depends_on linux:' "$1"; }
+
+          # A cask is only tested on Linux when it explicitly declares Linux
+          # support; otherwise it is treated as macOS-only.
+          declares_linux() {
+            local file="$1"
+            if [[ "$file" == Formula/* ]]; then
+              depends_on_macos "$file" && return 1
+              return 0
+            fi
+            grep -qE 'on_linux|os .*linux:|arm64_linux:|x86_64_linux:' "$file" && return 0
+            depends_on_linux "$file" && return 0
+            return 1
+          }
+          declares_macos() {
+            local file="$1"
+            if [[ "$file" == Formula/* ]]; then
+              depends_on_linux "$file" && return 1
+              return 0
+            fi
+            depends_on_linux "$file" || return 0
+            grep -qE 'on_macos|os .*macos:' "$file" && return 0
+            return 1
+          }
+
+          failed=0
+          while IFS= read -r file; do
+            [[ -n "$file" ]] || continue
+            name="$(basename "$file" .rb)"
+            full="${tap}/${name}"
+
+            if [[ "$RUNNER_OS" == 'Linux' ]]; then
+              if ! declares_linux "$file"; then
+                echo "::notice::Skipping ${full}: no Linux support declared."
+                continue
+              fi
+            elif ! declares_macos "$file"; then
+              echo "::notice::Skipping ${full}: no macOS support declared."
+              continue
+            fi
+
+            echo "::group::Installing ${full} on ${RUNNER_OS}"
+            status=0
+            if [[ "$file" == Casks/* ]]; then
+              output="$(brew install --cask "$full" 2>&1)" || status=$?
+            else
+              output="$(brew install "$full" 2>&1)" || status=$?
+            fi
+            echo "$output"
+            echo '::endgroup::'
+
+            if (( status != 0 )); then
+              if grep -qiE 'depends on hardware architecture|architecture is required for this software' <<<"$output"; then
+                echo "::notice::Skipping ${full}: not supported by this runner's architecture."
+                continue
+              fi
+              echo "::error::Failed to install ${full} on ${RUNNER_OS}."
+              failed=1
+              continue
+            fi
+
+            echo "::group::Verifying ${full} on ${RUNNER_OS}"
+            if [[ "$file" == Casks/* ]]; then
+              brew list --cask "$full" >/dev/null
+
+              targets="$(brew info --json=v2 --cask "$full" | jq -r '.casks[0].artifacts[] | select(has("target")) | .target')"
+              if [[ -z "$targets" ]]; then
+                echo "::error::${full} installed no artifacts."
+                failed=1
+              fi
+
+              while IFS= read -r target; do
+                [[ -n "$target" ]] || continue
+                target="${target/#\~/$HOME}"
+                if [[ ! -e "$target" ]]; then
+                  echo "::error::${full} is missing installed artifact: ${target}"
+                  failed=1
+                fi
+              done <<<"$targets"
+            elif ! output="$(brew test "$full" 2>&1)"; then
+              if grep -q 'No test' <<<"$output"; then
+                echo "::notice::${full} has no test to run."
+              else
+                echo "$output"
+                echo "::error::Failed to test ${full} on ${RUNNER_OS}."
+                failed=1
+              fi
+            fi
+            echo '::endgroup::'
+          done < "$changes"
+
+          exit "$failed"
