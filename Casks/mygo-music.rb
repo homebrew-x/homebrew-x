@@ -31,11 +31,21 @@ cask 'mygo-music' do
 
     depends_on formula: 'gtk+3'
 
-    binary 'mygo-music'
+    xdg_data_home = ENV.fetch('XDG_DATA_HOME', '~/.local/share')
+    xdg_config_home = ENV.fetch('XDG_CONFIG_HOME', '~/.config')
+    xdg_cache_home = ENV.fetch('XDG_CACHE_HOME', '~/.cache')
+
+    binary 'mygo-music-wrapper', target: 'mygo-music'
     artifact 'mygo-music.desktop',
-             target: '~/.local/share/applications/mygo-music.desktop'
+             target: "#{xdg_data_home}/applications/mygo-music.desktop"
 
     preflight_steps do
+      write_file 'mygo-music-wrapper', <<~SH
+        #!/bin/sh
+        export LD_LIBRARY_PATH="{{HOMEBREW_PREFIX}}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        exec "{{staged_path}}/mygo-music" "$@"
+      SH
+      set_permissions 'mygo-music-wrapper', '+x'
       inreplace 'mygo-music.desktop',
                 'Exec=mygo-music',
                 'Exec={{HOMEBREW_PREFIX}}/bin/mygo-music'
@@ -44,7 +54,7 @@ cask 'mygo-music' do
                 'Icon={{staged_path}}/mygo-music.png'
     end
 
-    zap trash: ['~/.cache/MyGo Music', '~/.config/MyGo Music']
+    zap trash: ["#{xdg_cache_home}/MyGo Music", "#{xdg_config_home}/MyGo Music"]
   end
 
   name 'MyGo Music'
