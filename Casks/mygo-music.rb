@@ -55,6 +55,12 @@ cask 'mygo-music' do
     end
 
     zap trash: ["#{xdg_cache_home}/MyGo Music", "#{xdg_config_home}/MyGo Music"]
+
+    caveats { <<~EOS }
+        MyGo Music stores data under XDG_CONFIG_HOME and XDG_CACHE_HOME. `brew uninstall --zap`
+        uses the paths recorded at install time; if you change those variables afterwards, remove
+        data from the previous locations manually.
+      EOS
   end
 
   name 'MyGo Music'
