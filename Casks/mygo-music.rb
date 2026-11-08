@@ -42,7 +42,7 @@ cask 'mygo-music' do
     preflight_steps do
       write_file 'mygo-music-wrapper', <<~SH
         #!/bin/sh
-        export LD_LIBRARY_PATH="{{HOMEBREW_PREFIX}}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        export LD_LIBRARY_PATH="{{HOMEBREW_PREFIX}}/lib:{{HOMEBREW_PREFIX}}/opt/gtk+3/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         exec "{{staged_path}}/mygo-music" "$@"
       SH
       set_permissions 'mygo-music-wrapper', '+x'
