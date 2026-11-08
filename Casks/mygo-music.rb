@@ -39,8 +39,6 @@ cask 'mygo-music' do
       ENV['XDG_CACHE_HOME'] || ENV['HOMEBREW_XDG_CACHE_HOME'] || '~/.cache'
 
     binary 'mygo-music-wrapper', target: 'mygo-music'
-    artifact 'mygo-music.desktop',
-             target: "#{xdg_data_home}/applications/mygo-music.desktop"
 
     preflight_steps do
       write_file 'mygo-music-wrapper', <<~SH
@@ -56,6 +54,14 @@ cask 'mygo-music' do
                 'Icon=mygo-music',
                 'Icon={{staged_path}}/mygo-music.png'
     end
+
+    # Copy rather than link: the app replaces mygo-music.desktop on self-update.
+    postflight_steps do
+      copy 'mygo-music.desktop',
+           "#{xdg_data_home}/applications/mygo-music.desktop"
+    end
+
+    uninstall delete: "#{xdg_data_home}/applications/mygo-music.desktop"
 
     zap trash: ["#{xdg_cache_home}/MyGo Music", "#{xdg_config_home}/MyGo Music"]
 
