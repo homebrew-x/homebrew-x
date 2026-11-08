@@ -31,9 +31,12 @@ cask 'mygo-music' do
 
     depends_on formula: 'gtk+3'
 
-    xdg_data_home = ENV.fetch('XDG_DATA_HOME', '~/.local/share')
-    xdg_config_home = ENV.fetch('XDG_CONFIG_HOME', '~/.config')
-    xdg_cache_home = ENV.fetch('XDG_CACHE_HOME', '~/.cache')
+    xdg_data_home =
+      ENV['XDG_DATA_HOME'] || ENV['HOMEBREW_XDG_DATA_HOME'] || '~/.local/share'
+    xdg_config_home =
+      ENV['XDG_CONFIG_HOME'] || ENV['HOMEBREW_XDG_CONFIG_HOME'] || '~/.config'
+    xdg_cache_home =
+      ENV['XDG_CACHE_HOME'] || ENV['HOMEBREW_XDG_CACHE_HOME'] || '~/.cache'
 
     binary 'mygo-music-wrapper', target: 'mygo-music'
     artifact 'mygo-music.desktop',
