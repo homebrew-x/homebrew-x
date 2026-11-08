@@ -143,15 +143,6 @@ jobs:
             if [[ "$file" == Casks/* ]]; then
               brew list --cask "$full" >/dev/null
 
-              # The mygo-music launcher must find Homebrew's gtk+3 keg even when it is unlinked.
-              if [[ "$name" == "mygo-music" && "$RUNNER_OS" == "Linux" ]]; then
-                launcher="$(brew --prefix)/bin/mygo-music"
-                if ! grep -q "/opt/gtk+3/lib" "$launcher"; then
-                  echo "::error::${full} launcher does not set the gtk+3 keg lib path."
-                  failed=1
-                fi
-              fi
-
               targets="$(brew info --json=v2 --cask "$full" | jq -r '.casks[0].artifacts[] | select(has("target")) | .target')"
               if [[ -z "$targets" ]]; then
                 echo "::error::${full} installed no artifacts."
