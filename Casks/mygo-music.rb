@@ -63,7 +63,12 @@ cask 'mygo-music' do
 
     uninstall delete: "#{xdg_data_home}/applications/mygo-music.desktop"
 
-    zap trash: ["#{xdg_cache_home}/MyGo Music", "#{xdg_config_home}/MyGo Music"]
+    zap trash: [
+          "#{xdg_cache_home}/MyGo Music",
+          "#{xdg_config_home}/MyGo Music",
+          '~/.cache/MyGo Music',
+          '~/.config/MyGo Music',
+        ]
 
     caveats <<~EOS
       MyGo Music stores data under XDG_CONFIG_HOME and XDG_CACHE_HOME. `brew uninstall --zap`
