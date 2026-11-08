@@ -141,10 +141,16 @@ jobs:
 
             echo "::group::Verifying ${full} on ${RUNNER_OS}"
             if [[ "$file" == Casks/* ]]; then
-              brew list --cask "$full" >/dev/null
+              if ! brew list --cask "$full" >/dev/null; then
+                echo "::error::${full} is not listed as installed."
+                failed=1
+              fi
 
-              targets="$(brew info --json=v2 --cask "$full" | jq -r '.casks[0].artifacts[] | select(has("target")) | .target')"
-              if [[ -z "$targets" ]]; then
+              if ! targets="$(brew info --json=v2 --cask "$full" | jq -r '.casks[0].artifacts[] | select(has("target")) | .target')"; then
+                echo "::error::Could not read installed artifacts for ${full}."
+                failed=1
+                targets=""
+              elif [[ -z "$targets" ]]; then
                 echo "::error::${full} installed no artifacts."
                 failed=1
               fi
