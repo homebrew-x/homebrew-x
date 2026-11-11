@@ -1,15 +1,15 @@
 cask 'mygo-music' do
   arch arm: 'arm64', intel: 'amd64'
 
-  version '0.1.22'
+  version '0.1.24'
   sha256 arm:
-           'f1074aab65cee1530e5038eb63d9860e77f0c376858110baf85d5f240a7ec43d',
+           'ed2870e12f73156121320d3a7da3e9efe67f52852dac835351d30dbbee6c70ce',
          intel:
-           '29fd1b5835e8f483a8da602e42c39066f1742185667b5dea60944f9a5b2251b4',
+           '9b32705679da2a5d724fabcb5e97deb08f48cd3681522012ba6d9a996dcb9248',
          arm64_linux:
-           '5434d1addaad9d8ffcf5a6c271208c94bbd78ea2ffbc4721cbcf9f6871768a82',
+           '9a5e656eb11c61ee46f9d61d5871c730a2013520fe1cd1ef2ac54c6d5196be60',
          x86_64_linux:
-           '7507094313b97d03c6abf9eb45ef83dc01722d367f242f55cf84f9116243b71a'
+           '51c046fb2caeb72f5d659ca794bed1f24dd2b8a767975d11a1d60bc94d83e882'
 
   on_macos do
     url "https://github.com/egoist/mygo-music/releases/download/v#{version}/mygo-music-#{version}-#{arch}.dmg"
