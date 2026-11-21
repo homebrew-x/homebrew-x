@@ -5,13 +5,13 @@ require 'zlib'
 cask 'moonbit' do
   os macos: 'darwin', linux: 'linux'
 
-  version '0.10.21+06da1ed44,358728a14c7bbb5d1861fb48845cd1785da495b7b1836e484af499a679e328c2'
+  version '0.10.22+124d61d05,a22977f3d346e4a189fe521b2d265b2fbb6c00e3ff80342246fb6f8f26c9f156'
   sha256 arm:
-           '8c75c8413fa5427420baa9341fe980ee2f13df8f1b157536cd612f764b038aeb',
+           '5c57025f0db4a90261eebeb880e542003cdae05033b9506233e282586f81329a',
          arm64_linux:
-           'c61c734d8da9e2563501038ee345a440e4d2ccc8f2bf31c41a44ab2203f8a8f7',
+           '83a5d254c61ec04318c1829dc309b21ab25baee7402e164538775371c40ea5b1',
          x86_64_linux:
-           '32f74e33538911313acba366d4a06e7678296aa7737945f678ff1fbc7f9f7f82'
+           'aeb78ded1d5e25185ed788328cacef5e843a9ab923145523b7652e8d082f74fb'
 
   on_macos do
     arch arm: 'aarch64'
